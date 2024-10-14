@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 
-import '../core/core.dart';
+// import '../core/core.dart';
 
 class ElevatedLoadingButton extends StatelessWidget {
   final String text;
@@ -81,29 +81,37 @@ class GoBackButton extends StatelessWidget {
           if (name == null) return context.pop(true);
           context.goNamed(name!);
         },
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.grey, size: 20),
-        label: Text(text ?? 'Go back', style: const TextStyle(color: Colors.grey)),
+        icon:
+            const Icon(Icons.arrow_back_ios_new, color: Colors.grey, size: 20),
+        label:
+            Text(text ?? 'Go back', style: const TextStyle(color: Colors.grey)),
       ),
     );
   }
 }
 
 class GoogleLinkAccountButton extends ConsumerWidget {
-  const GoogleLinkAccountButton({super.key});
+  final VoidCallback onPressed;
+  final bool isLoading;
+
+  const GoogleLinkAccountButton(
+      {this.isLoading = false, required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final account = ref.watch(accountProvider);
-    final authpending = ref.watch(authPendingProvider);
+    // final account = ref.watch(accountProvider);
+    // final authpending = ref.watch(authPendingProvider);
 
     return SizedBox(
       width: 250,
       child: ElevatedLoadingButton(
         text: 'Link Google Account',
-        onPressed: () => ref.read(authProvider.notifier).linkGoogleIdentity(context),
+        // onPressed: () => ref.read(authProvider.notifier).linkGoogleIdentity(context),
+        onPressed: onPressed,
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
-        loading: authpending == 'google',
+        // loading: authpending == 'google',
+        loading: isLoading,
         icon: const Icon(Bootstrap.google, size: 20),
       ),
     );

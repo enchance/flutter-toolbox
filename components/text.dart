@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/core.dart';
+// import '../core/core.dart';
 
 class TextWithIcon extends ConsumerWidget {
   final bool enabled;
@@ -29,7 +29,7 @@ class TextWithIcon extends ConsumerWidget {
           size: iconSize,
           color: enabled
               ? color ?? theme.colorScheme.onSurface
-              : theme.colorScheme.onSurface.withOpacity(opacity2),
+              : theme.colorScheme.onSurface.withOpacity(0.3),
         ),
         const SizedBox(width: 10),
         Flexible(
@@ -38,7 +38,7 @@ class TextWithIcon extends ConsumerWidget {
             style: TextStyle(
               color: enabled
                   ? color ?? theme.colorScheme.onSurface
-                  : theme.colorScheme.onSurface.withOpacity(opacity2),
+                  : theme.colorScheme.onSurface.withOpacity(0.3),
               fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
             ),
           ),

@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../core/core.dart';
-
+// import '../core/core.dart';
 
 class BaseNoticeBox extends ConsumerWidget {
   final String message;
   final (Color, Color, Color) colors;
-  const BaseNoticeBox({required this.message, required this.colors, super.key});
+  final double radius;
+
+  const BaseNoticeBox({
+    required this.message,
+    required this.colors,
+    this.radius = 5,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    final config = ref.watch(appConfigProvider);
+    // final settings = ref.watch(settingsProvider);
+    // final config = ref.watch(appConfigProvider);
 
     final (bgColor, borderColor, textColor) = colors;
     final theme = Theme.of(context);
@@ -22,7 +28,7 @@ class BaseNoticeBox extends ConsumerWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(settings.radius),
+        borderRadius: BorderRadius.circular(radius),
         border: Border.all(color: borderColor),
         color: bgColor,
       ),
@@ -40,44 +46,64 @@ class BaseNoticeBox extends ConsumerWidget {
 
 class SuccessNoticeBox extends ConsumerWidget {
   final String message;
-  const SuccessNoticeBox({required this.message, super.key});
+  final (Color, Color, Color) boxColors;
+
+  const SuccessNoticeBox({
+    required this.message,
+    required this.boxColors,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    return BaseNoticeBox(message: message, colors: settings.successBoxColors);
+    return BaseNoticeBox(message: message, colors: boxColors);
   }
 }
 
 class ErrorNoticeBox extends ConsumerWidget {
   final String message;
-  const ErrorNoticeBox({required this.message, super.key});
+  final (Color, Color, Color) boxColors;
+
+  const ErrorNoticeBox({
+    required this.message,
+    required this.boxColors,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    return BaseNoticeBox(message: message, colors: settings.errorBoxColors);
+    return BaseNoticeBox(message: message, colors: boxColors);
   }
 }
 
 class InfoNoticeBox extends ConsumerWidget {
   final String message;
-  const InfoNoticeBox({required this.message, super.key});
+  final (Color, Color, Color) boxColors;
+
+  const InfoNoticeBox({
+    required this.message,
+    required this.boxColors,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    return BaseNoticeBox(message: message, colors: settings.infoBoxColors);
+    return BaseNoticeBox(message: message, colors: boxColors);
   }
 }
 
 class GreyNoticeBox extends ConsumerWidget {
   final String message;
-  const GreyNoticeBox({required this.message, super.key});
+  final (Color, Color, Color) boxColors;
+
+  const GreyNoticeBox({
+    required this.message,
+    required this.boxColors,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    return BaseNoticeBox(message: message, colors: settings.greyBoxColors);
+    return BaseNoticeBox(message: message, colors: boxColors);
   }
 }

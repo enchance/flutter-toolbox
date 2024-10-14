@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../core/core.dart';
+// import '../core/core.dart';
+import '../enums.dart';
 
 // void appDialog(BuildContext context,
 //     {Widget? titleAndroid,
@@ -104,7 +105,7 @@ Future<BuildContext?> showAppDialog(
           scrollable: true,
           backgroundColor: surface,
           icon: iconData != null
-              ? Icon(iconData, size: 34, color: theme.colorScheme.onSurface.withOpacity(opacity1))
+              ? Icon(iconData, size: 34, color: theme.colorScheme.onSurface.withOpacity(0.5))
               : null,
           title: Text(
             title,
